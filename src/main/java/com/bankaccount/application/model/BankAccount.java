@@ -1,27 +1,30 @@
 package com.bankaccount.application.model;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "bankAccounts")
+@AllArgsConstructor
+@NoArgsConstructor
 public class BankAccount extends BaseModel {
 
-  @ManyToOne
-  @JoinColumn(name = "userId")
-  private User user;
+  private UUID userId;
 
-  private String accountNumber;
+  private UUID accountId;
 
-  @Column(name="balance", columnDefinition="Decimal(10,2) default '100.00'")
+  @Column(name="balance")
   private BigDecimal balance;
+
+  private Boolean active;
 
 }
